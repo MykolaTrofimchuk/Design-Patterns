@@ -20,15 +20,15 @@ namespace ConsoleApp
     {
         public string Name { get; set; }
         public string Unit { get; set; }
-        public decimal UnitPrice { get; set; }
+        public Money UnitPrice { get; set; }
         public int Quantity { get; set; }
         public DateTime LastStockDate { get; set; }
 
         public ProductCategory Category { get; set; }
 
-        public void DecreasePrice(decimal amount)
+        public void DecreasePrice(Money amount)
         {
-            UnitPrice -= amount;
+            UnitPrice.Subtract(amount);
         }
     }
 }

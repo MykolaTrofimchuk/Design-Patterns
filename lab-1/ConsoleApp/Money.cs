@@ -41,7 +41,18 @@ namespace ConsoleApp
 
         public void PrintAmount()
         {
-            Console.WriteLine($"Total amount: {wholePart}.{pennies} {currency}/s");
+            Console.WriteLine($"{wholePart}.{pennies} {currency}/s");
+        }
+
+        public void Subtract(Money amount)
+        {
+            wholePart -= amount.WholePart;
+            pennies -= amount.Pennies;
+            if (pennies < 0)
+            {
+                pennies += 100;
+                wholePart--; 
+            }
         }
     }
 
