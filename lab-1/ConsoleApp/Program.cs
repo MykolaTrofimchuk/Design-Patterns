@@ -26,11 +26,16 @@ internal class Program
         Console.WriteLine($"Last Stock Date: {product.LastStockDate}");
 
         // Substract price
-        Money discount = new Money(200, 25, "USD"); // Sale $200.25
+        Dollar discount = new Dollar(200, 25); // Sale $200.25
         product.DecreasePrice(discount);
 
-        // Check product`s info after substracting
+        // Check product`s price info after substracting
         Console.WriteLine("\nProduct Information after discount:");
-        Console.WriteLine($"Unit Price: {product.UnitPrice.WholePart}.{product.UnitPrice.Pennies} {product.UnitPrice.Currency}/s");
+        Console.WriteLine($"Unit Price: {product.UnitPrice.WholePart}.{product.UnitPrice.Pennies} {product.UnitPrice.Currency}/s\n");
+
+        // Check substracting price with another currency // Error
+        Euro discountEr = new Euro(200, 25);
+        Console.WriteLine("\nProduct Information after FALSE discount:");
+        product.DecreasePrice(discountEr);
     }
 }

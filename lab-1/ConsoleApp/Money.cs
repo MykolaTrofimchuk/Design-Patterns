@@ -46,13 +46,26 @@ namespace ConsoleApp
 
         public void Subtract(Money amount)
         {
-            wholePart -= amount.WholePart;
-            pennies -= amount.Pennies;
-            if (pennies < 0)
+            if (checkCurrency(amount.Currency)) 
             {
-                pennies += 100;
-                wholePart--; 
+                wholePart -= amount.WholePart;
+                pennies -= amount.Pennies;
+
+                if (pennies < 0)
+                {
+                    pennies += 100;
+                    wholePart--;
+                }
             }
+            else
+            {
+                Console.WriteLine("Error: Currency mismatch. Cannot subtract money with different currencies.");
+            }
+        }
+
+        private bool checkCurrency(string otherCurrency)
+        {
+            return currency == otherCurrency; 
         }
     }
 
