@@ -21,7 +21,7 @@ namespace ConsoleApp
         {
             product.Quantity += quantity;
             product.LastStockDate = DateTime.Now;
-            Console.WriteLine($"Registered incoming for {quantity} {product.Unit} of {product.Name}");
+            Console.WriteLine($"Registered incoming for {quantity} {product.Unit} of {product.Name} (Registered at {product.LastStockDate})");
         }
 
         public void RegisterOutgoing(Product product, int quantity)

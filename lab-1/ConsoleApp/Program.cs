@@ -1,4 +1,5 @@
 ﻿using ConsoleApp;
+using Microsoft.Win32;
 
 internal class Program
 {
@@ -12,7 +13,7 @@ internal class Program
             Name = "Smartphone",
             Unit = "pcs",
             UnitPrice = d,
-            Quantity = 10,
+            Quantity = 8,
             LastStockDate = DateTime.Now,
             Category = ProductCategory.Electronics
         };
@@ -37,5 +38,33 @@ internal class Program
         Euro discountEr = new Euro(200, 25);
         Console.WriteLine("\nProduct Information after FALSE discount:");
         product.DecreasePrice(discountEr);
+        Console.WriteLine("\n\n");
+
+
+
+        // Check another classes work
+        Product product2 = new Product
+        {
+            Name = "T-Shirt",
+            Unit = "pcs",
+            UnitPrice = new UAN(450, 50),
+            Quantity = 100,
+            LastStockDate = DateTime.Now,
+            Category = ProductCategory.Clothing
+        };
+
+        Warehouse warehouse = new Warehouse(new Product[] { product, product2 });
+        Reporting reporting = new Reporting(warehouse);
+
+        // checking with True values:
+        reporting.RegisterIncoming(product, 20); // ok
+        reporting.RegisterOutgoing(product2, 10); // ok
+        reporting.InventoryReport();
+
+        Console.WriteLine("\n");
+
+        // checking with False Values of quantity at Register Outgoing:
+        reporting.RegisterOutgoing(product2, 110); // Not enough T - Shirt in stock to register outgoing.
+        reporting.InventoryReport();
     }
 }
