@@ -34,3 +34,5 @@ All C# files/classes are located in the separate [Application folder](./ConsoleA
 - In the Reporting.cs class, I tried to use this method, as evidenced by the implementation of the `RegisterIncoming` , `RegisterOutgoing` , `InventoryReport methods`, which could be implemented almost identically (duplicating the code with minimal changes), but by adding some simple checks and using a little ingenuity, it was possible to avoid this.  [Reporting.cs](./ConsoleApp/Reporting.cs#L18-L48)
 
 _During the execution of this task, I tried as much as possible to adhere to all known principles of framing to facilitate the further development of the application, the readability of the code itself, without losing functionality._
+
+## [UML Diagrame](https://drive.google.com/file/d/1YdEoo6zP7YqISTa8f9-pVB5FkvDT2xvt/view)
