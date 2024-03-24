@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace task3_prototype
+namespace task4_prototype
 {
     // Клонування відбувається за допомогою інтерфейсу ICloneable, який дозволяє створювати глибокі копії об'єктів. У класі Virus реалізовано метод Clone(),
     // який створює новий об'єкт Virus з такими ж властивостями, як у вихідному вірусі. Після цього рекурсивно клонуються всі діти вихідного вірусу і
