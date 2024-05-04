@@ -25,11 +25,8 @@ class Program
         Console.WriteLine(body.OuterHtml());
         Console.WriteLine();
 
-        // Виклик хуків життєвого циклу за допомогою шаблонного методу
-        body.LifecycleHooks();
-
         // Ітератор: Перебір документу в глибину
-        Console.WriteLine("\nDepth-first traversal:");
+        Console.WriteLine("Depth-first traversal:");
         foreach (var node in body.DepthFirstIterator())
         {
             Console.WriteLine(node.GetType().Name);

@@ -35,13 +35,5 @@ namespace task05
         {
             return _text;
         }
-
-        // Реалізація конкретних кроків хуків життєвого циклу
-        protected override void OnCreated() { Console.WriteLine("Text node created"); }
-        protected override void OnInserted() { Console.WriteLine("Text node inserted into document"); }
-        protected override void OnRemoved() { Console.WriteLine("Text node removed from document"); }
-        protected override void OnStylesApplied() { Console.WriteLine("Styles applied to text node"); }
-        protected override void OnClassListApplied() { Console.WriteLine("Class list applied to text node"); }
-        protected override void OnTextRendered() { Console.WriteLine("Text rendered for text node"); }
     }
 }

@@ -26,24 +26,5 @@ namespace task05
         public abstract void Remove(LightNode node);
         public abstract string OuterHtml();
         public abstract string InnerHtml();
-
-        // Шаблонний метод для хуків життєвого циклу
-        public void LifecycleHooks()
-        {
-            OnCreated();
-            OnInserted();
-            OnRemoved();
-            OnStylesApplied();
-            OnClassListApplied();
-            OnTextRendered();
-        }
-
-        // Абстрактні методи для реалізації в підкласах
-        protected abstract void OnCreated();
-        protected abstract void OnInserted();
-        protected abstract void OnRemoved();
-        protected abstract void OnStylesApplied();
-        protected abstract void OnClassListApplied();
-        protected abstract void OnTextRendered();
     }
 }
