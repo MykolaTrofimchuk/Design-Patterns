@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
+using task05.Command;
 
 namespace task05
 {
@@ -10,6 +7,7 @@ namespace task05
     class LightElementNode : LightNode
     {
         private List<LightNode> _children = new List<LightNode>();
+        private List<string> _appliedClasses = new List<string>();
 
         public LightElementNode(string tagName, string displayType, string closingType, List<string> cssClasses) : base(tagName, displayType, closingType, cssClasses)
         {
@@ -52,47 +50,19 @@ namespace task05
             return builder.ToString();
         }
 
-        // Ітератор для перебору дочірніх елементів в глибину
-        public IEnumerable<LightNode> DepthFirstIterator()
+        // Додавання класу до елемента
+        public void AddCssClass(string cssClass)
         {
-            yield return this;
-            foreach (var child in _children)
+            if (!_cssClasses.Contains(cssClass))
             {
-                if (child is LightElementNode)
-                {
-                    var elementNode = (LightElementNode)child;
-                    foreach (var item in elementNode.DepthFirstIterator())
-                    {
-                        yield return item;
-                    }
-                }
-                else
-                {
-                    yield return child;
-                }
+                _cssClasses.Add(cssClass);
             }
         }
 
-        // Ітератор для перебору дочірніх елементів в ширину
-        public IEnumerable<LightNode> BreadthFirstIterator()
+        // Виконання команди
+        public void ExecuteCommand(ICommand command)
         {
-            Queue<LightNode> queue = new Queue<LightNode>();
-            queue.Enqueue(this);
-
-            while (queue.Count > 0)
-            {
-                var node = queue.Dequeue();
-                yield return node;
-
-                if (node is LightElementNode)
-                {
-                    var elementNode = (LightElementNode)node;
-                    foreach (var child in elementNode._children)
-                    {
-                        queue.Enqueue(child);
-                    }
-                }
-            }
+            command.Execute(this);
         }
     }
 }

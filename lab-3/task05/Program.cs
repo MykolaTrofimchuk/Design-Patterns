@@ -1,4 +1,5 @@
 ﻿using task05;
+using task05.Command;
 
 class Program
 {
@@ -25,18 +26,10 @@ class Program
         Console.WriteLine(body.OuterHtml());
         Console.WriteLine();
 
-        // Ітератор: Перебір документу в глибину
-        Console.WriteLine("Depth-first traversal:");
-        foreach (var node in body.DepthFirstIterator())
-        {
-            Console.WriteLine(node.GetType().Name);
-        }
+        // Додавання класу до елемента за допомогою команди
+        ICommand addClassCommand = new AddClassCommand("highlight");
+        addClassCommand.Execute(body);
 
-        // Ітератор: Перебір документу в ширину
-        Console.WriteLine("\nBreadth-first traversal:");
-        foreach (var node in body.BreadthFirstIterator())
-        {
-            Console.WriteLine(node.GetType().Name);
-        }
+        Console.WriteLine(body.OuterHtml());
     }
 }
