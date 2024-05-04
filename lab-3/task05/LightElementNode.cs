@@ -51,6 +51,15 @@ namespace task05
             }
             return builder.ToString();
         }
+
+        // Реалізація конкретних кроків хуків життєвого циклу
+        protected override void OnCreated() { Console.WriteLine($"Element {_tagName} created"); }
+        protected override void OnInserted() { Console.WriteLine($"Element {_tagName} inserted into document"); }
+        protected override void OnRemoved() { Console.WriteLine($"Element {_tagName} removed from document"); }
+        protected override void OnStylesApplied() { Console.WriteLine($"Styles applied to element {_tagName}"); }
+        protected override void OnClassListApplied() { Console.WriteLine($"Class list applied to element {_tagName}"); }
+        protected override void OnTextRendered() { Console.WriteLine($"Text rendered for element {_tagName}"); }
+
     }
 
 }
