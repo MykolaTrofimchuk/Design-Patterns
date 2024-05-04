@@ -51,6 +51,48 @@ namespace task05
             }
             return builder.ToString();
         }
-    }
 
+        // Ітератор для перебору дочірніх елементів в глибину
+        public IEnumerable<LightNode> DepthFirstIterator()
+        {
+            yield return this;
+            foreach (var child in _children)
+            {
+                if (child is LightElementNode)
+                {
+                    var elementNode = (LightElementNode)child;
+                    foreach (var item in elementNode.DepthFirstIterator())
+                    {
+                        yield return item;
+                    }
+                }
+                else
+                {
+                    yield return child;
+                }
+            }
+        }
+
+        // Ітератор для перебору дочірніх елементів в ширину
+        public IEnumerable<LightNode> BreadthFirstIterator()
+        {
+            Queue<LightNode> queue = new Queue<LightNode>();
+            queue.Enqueue(this);
+
+            while (queue.Count > 0)
+            {
+                var node = queue.Dequeue();
+                yield return node;
+
+                if (node is LightElementNode)
+                {
+                    var elementNode = (LightElementNode)node;
+                    foreach (var child in elementNode._children)
+                    {
+                        queue.Enqueue(child);
+                    }
+                }
+            }
+        }
+    }
 }

@@ -15,12 +15,28 @@ class Program
                     {
                         new LightElementNode("li", "block", "closed", new List<string>(), new List<LightNode>(){new LightTextNode("Item 1")} ),
                         new LightElementNode("li", "block", "closed", new List<string>(), new List<LightNode>(){new LightTextNode("Item 2")} ),
-                        new LightElementNode("li", "block", "closed", new List<string>(), new List<LightNode>(){new LightTextNode("Item 3")} )
+                        new LightElementNode("li", "block", "closed", new List<string>(), new List<LightNode>(){new LightTextNode("Item 3")} ),
+                        new LightElementNode("li", "block", "closed", new List<string>(), new List<LightNode>(){new LightTextNode("Item 4")} )
                     }
                 )
             }
         );
 
         Console.WriteLine(body.OuterHtml());
+        Console.WriteLine();
+
+        // Ітератор: Перебір документу в глибину
+        Console.WriteLine("Depth-first traversal:");
+        foreach (var node in body.DepthFirstIterator())
+        {
+            Console.WriteLine(node.GetType().Name);
+        }
+
+        // Ітератор: Перебір документу в ширину
+        Console.WriteLine("\nBreadth-first traversal:");
+        foreach (var node in body.BreadthFirstIterator())
+        {
+            Console.WriteLine(node.GetType().Name);
+        }
     }
 }
