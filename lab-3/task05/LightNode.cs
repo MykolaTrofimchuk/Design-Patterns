@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using task05.Visitor;
 
 namespace task05
 {
@@ -26,5 +27,6 @@ namespace task05
         public abstract void Remove(LightNode node);
         public abstract string OuterHtml();
         public abstract string InnerHtml();
+        public abstract void Accept(INodeVisitor visitor);
     }
 }
