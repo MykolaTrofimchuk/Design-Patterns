@@ -1,11 +1,13 @@
-﻿using task05;
+﻿using System;
+using System.Collections.Generic;
+using task05;
 using task05.Command;
 
 class Program
 {
     static void Main(string[] args)
     {
-        // використання шаблону Компонувальник
+        // Створюємо елементи розмітки
         LightElementNode body = new LightElementNode("body", "block", "open",
             new List<string>(),
             new List<LightNode>()
@@ -30,6 +32,16 @@ class Program
         ICommand addClassCommand = new AddClassCommand("highlight");
         addClassCommand.Execute(body);
 
+        // Виводимо елемент розмітки після додавання класу
+        Console.WriteLine("\nAfter adding class:");
+        Console.WriteLine(body.OuterHtml());
+        Console.WriteLine();
+
+        // Застосовуємо стилі до елементу
+        body.ApplyStyles();
+
+        // Виводимо елемент розмітки після застосування стилів
+        Console.WriteLine("\nAfter applying styles:");
         Console.WriteLine(body.OuterHtml());
     }
 }

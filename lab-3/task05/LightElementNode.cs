@@ -1,13 +1,19 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using task05.Command;
+using task05.State;
 
 namespace task05
 {
-    // представляє елемент розмітки
+    // Представляє елемент розмітки
     class LightElementNode : LightNode
     {
         private List<LightNode> _children = new List<LightNode>();
         private List<string> _appliedClasses = new List<string>();
+        private List<string> _appliedStyles = new List<string>();
+
+        public string TagName => _tagName;
+        private IStyleState _styleState;
 
         public LightElementNode(string tagName, string displayType, string closingType, List<string> cssClasses) : base(tagName, displayType, closingType, cssClasses)
         {
@@ -16,6 +22,7 @@ namespace task05
         public LightElementNode(string tagName, string displayType, string closingType, List<string> cssClasses, List<LightNode> children) : base(tagName, displayType, closingType, cssClasses)
         {
             _children = children;
+            _styleState = new StyleAppliedState();
         }
 
         public override void Add(LightNode node)
@@ -31,7 +38,7 @@ namespace task05
         public override string OuterHtml()
         {
             StringBuilder builder = new StringBuilder();
-            builder.Append($"<{_tagName} class=\"{string.Join(" ", _cssClasses)}\">");
+            builder.Append($"<{_tagName} class=\"{string.Join(" ", _cssClasses)}\" style=\"{string.Join("; ", _appliedStyles)}\">");
             if (_closingType == "open")
             {
                 builder.Append(InnerHtml());
@@ -59,10 +66,22 @@ namespace task05
             }
         }
 
+        // Додавання стилю до елемента
+        public void AddCssStyle(string cssStyle)
+        {
+            _appliedStyles.Add(cssStyle);
+        }
+
         // Виконання команди
         public void ExecuteCommand(ICommand command)
         {
             command.Execute(this);
+        }
+
+        // State
+        public void ApplyStyles()
+        {
+            _styleState.Apply(this);
         }
     }
 }
