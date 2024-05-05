@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using task05;
 using task05.Command;
+using task05.Visitor;
 
 class Program
 {
@@ -43,5 +44,11 @@ class Program
         // Виводимо елемент розмітки після застосування стилів
         Console.WriteLine("\nAfter applying styles:");
         Console.WriteLine(body.OuterHtml());
+
+        // Створення відвідувача для інших завдань
+        ElementVisualizer otherVisitor = new ElementVisualizer();
+
+        // Прийняття відвідувача елементами розмітки для виконання інших завдань
+        body.Accept(otherVisitor);
     }
 }

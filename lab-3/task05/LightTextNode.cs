@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using task05.Visitor;
 
 namespace task05
 {
@@ -34,6 +35,11 @@ namespace task05
         public override string InnerHtml()
         {
             return _text;
+        }
+
+        public override void Accept(INodeVisitor visitor)
+        {
+            visitor.Visit(this);
         }
     }
 }

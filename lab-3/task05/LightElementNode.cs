@@ -2,10 +2,11 @@
 using System.Text;
 using task05.Command;
 using task05.State;
+using task05.Visitor;
 
 namespace task05
 {
-    // Представляє елемент розмітки
+    // представляє елемент розмітки
     class LightElementNode : LightNode
     {
         private List<LightNode> _children = new List<LightNode>();
@@ -83,5 +84,16 @@ namespace task05
         {
             _styleState.Apply(this);
         }
+
+        // Перегружений метод Accept для відвідувача завдання
+        public override void Accept(INodeVisitor visitor)
+        {
+            visitor.Visit(this);
+            foreach (var child in _children)
+            {
+                child.Accept(visitor);
+            }
+        }
+
     }
 }
